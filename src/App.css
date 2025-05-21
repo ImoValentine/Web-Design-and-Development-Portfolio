@@ -1,0 +1,153 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root,
+.App {
+  height: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  /* Set grid.jpg as the full-page background.
+     (If necessary, you can adjust the path or even move grid.jpg to public/) */
+  background: url('./assets/grid.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Marquee Container: occupies the full viewport */
+.marquee-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Marquee Wrapper & Track: holds the sliding text */
+.marquee-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 3s linear infinite;
+}
+
+.marquee-content {
+  font-size: 25rem;
+  font-weight: 500;
+  color: #000; /* Black text */
+  padding-right: 50px;
+}
+
+/* Keyframes for horizontal sliding animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Overlay container for Linktree and avatar */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Linktree Box: positioned at the top right */
+.linktree {
+  position: absolute;
+  top: 20px;
+  right: 500px;
+  z-index: 2;
+}
+.linktree a {
+  color: #000; 
+  text-decoration: none;
+  border: 1px solid #000;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.linktree a:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Avatar Container: centered at bottom */
+.avatar-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.avatar-image {
+  width: auto;
+  height: 90vh; /* 70% of the viewport height */
+  border: none;
+  border-radius: 0;
+}
+
+/* Projects Section Styles */
+.projects-section {
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  color: #000;
+}
+
+.project-item {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Begin: Scroll Down Button Styles */
+.scroll-down-button {
+  position: absolute;
+  bottom: 20px; /* 20px from the bottom */
+  left: 20px;   /* 20px from the left */
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.8);
+  color: #000;
+  border: 1px solid #000;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  /* Animation: simple pulse for attention */
+  animation: pulse 2s infinite;
+  transition: transform 0.3s;
+}
+
+.scroll-down-button:hover {
+  transform: translateY(5px);
+}
+
+@keyframes pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+/* End: Scroll Down Button Styles */
