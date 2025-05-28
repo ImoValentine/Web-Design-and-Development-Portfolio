@@ -1,23 +1,29 @@
-/* Reset & Base Styles */
+/* =============================================================================
+   Reset & Base Styles
+   ============================================================================= */
+/* Reset margins, paddings, and set box-sizing globally for consistency. */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Apply full height and a background image for the main containers. */
 body,
 html,
 #root,
 .App {
   height: 100%;
   font-family: 'Cormorant Garamond', serif;
-  /* Set grid.jpg as the full-page background.
-     (If necessary, you can adjust the path or even move grid.jpg to public/) */
+  /* Fixed background image using grid.jpg; adjust the path if necessary. */
   background: url('./assets/grid.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
-/* Marquee Container: occupies the full viewport */
+/* =============================================================================
+   Infinite Marquee Section
+   ============================================================================= */
+/* The container spans the full viewport and hides overflow */
 .marquee-container {
   position: relative;
   width: 100vw;
@@ -26,7 +32,7 @@ html,
   background: transparent;
 }
 
-/* Marquee Wrapper & Track: holds the sliding text */
+/* Center the marquee wrapper vertically */
 .marquee-wrapper {
   position: absolute;
   top: 50%;
@@ -34,23 +40,25 @@ html,
   transform: translateY(-50%);
   width: 100%;
   overflow: hidden;
-  z-index: 0;
+  z-index: 0;  /* Behind overlay elements */
 }
 
+/* The marquee track holds the repeated text and animates it */
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 3s linear infinite;
+  animation: marquee 30s linear infinite;  /* 30 seconds, smooth infinite loop */
 }
 
+/* Styling for each marquee content block */
 .marquee-content {
-  font-size: 25rem;
+  font-size: 25rem;   /* Extremely large text size */
   font-weight: 500;
-  color: #000; /* Black text */
-  padding-right: 50px;
+  color: #000;        /* Black text */
+  padding-right: 50px; /* Space between repeated blocks */
 }
 
-/* Keyframes for horizontal sliding animation */
+/* Keyframes for the infinite horizontal sliding animation */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -60,28 +68,41 @@ html,
   }
 }
 
-/* Overlay container for Linktree and avatar */
+/* =============================================================================
+   Overlay Elements (Linktree, Scroll Down Button, Avatar)
+   ============================================================================= */
+/* The overlay sits above the marquee to host additional UI elements */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 1;  /* On top of the marquee */
 }
 
-/* Linktree Box: positioned at the top right */
+/* -----------------------------------------------------------------------------
+   Linktree Box for Desktop:
+   - Positioned at the top (20px from the top).
+   - Now has left and right positioning of 600px, ensuring the button stretches
+     across the screen with 600px margins.
+----------------------------------------------------------------------------- */
 .linktree {
   position: absolute;
   top: 20px;
-  right: 500px;
+  left: 600px;      /* 600px from the left */
+  right: 600px;     /* 600px from the right */
   z-index: 2;
 }
+/* The anchor (button) inside the Linktree container fills the container width,
+   has centered text, and now uses a dark calm grey background with white text. */
 .linktree a {
-  color: #000; 
+  display: block;  /* Fills the parent's width */
+  text-align: center;
+  color: #fff;           /* White text contrast */
   text-decoration: none;
-  border: 1px solid #000;
-  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #444;/* Light grey border for subtle definition */
+  background: #333;      /* Dark calm grey background */
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 1rem;
@@ -89,44 +110,16 @@ html,
   transition: background 0.3s;
 }
 .linktree a:hover {
-  background: rgba(255, 255, 255, 1);
+  background: #444;  /* Slight lightening on hover */
 }
 
-/* Avatar Container: centered at bottom */
-.avatar-container {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
-.avatar-image {
-  width: auto;
-  height: 90vh; /* 70% of the viewport height */
-  border: none;
-  border-radius: 0;
-}
-
-/* Projects Section Styles */
-.projects-section {
-  padding: 20px;
-  background: #fff;
-  text-align: center;
-  color: #000;
-}
-
-.project-item {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-/* Begin: Scroll Down Button Styles */
+/* -----------------------------------------------------------------------------
+   Scroll Down Button Styles:
+----------------------------------------------------------------------------- */
 .scroll-down-button {
   position: absolute;
-  bottom: 20px; /* 20px from the bottom */
-  left: 20px;   /* 20px from the left */
+  bottom: 20px;
+  left: 20px;
   z-index: 2;
   background: rgba(255, 255, 255, 0.8);
   color: #000;
@@ -136,18 +129,196 @@ html,
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  /* Animation: simple pulse for attention */
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite;  /* Continuous pulsing animation */
   transition: transform 0.3s;
 }
-
 .scroll-down-button:hover {
-  transform: translateY(5px);
+  transform: translateY(5px);  /* Slide down slightly on hover */
 }
 
+/* Keyframes for the pulse animation on the scroll button */
 @keyframes pulse {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.5; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-/* End: Scroll Down Button Styles */
+
+/* -----------------------------------------------------------------------------
+   Avatar Styles:
+----------------------------------------------------------------------------- */
+.avatar-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.avatar-image {
+  width: auto;
+  height: 90vh;  /* Nearly the full viewport height */
+  border: none;
+  border-radius: 0;
+}
+
+/* =============================================================================
+   Projects Section Styles
+   ============================================================================= */
+/* The container for the projects section, with centered text and a white background */
+.projects-section {
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  color: #000;
+}
+
+/* Larger heading for the projects section */
+.projects-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Legacy style for individual project items (if used) */
+.project-item {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* =============================================================================
+   Carousel & Project Card Styling
+   ============================================================================= */
+/* The projects-grid container normally displays project cards in a flex grid */
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Default project card styling for mobile view */
+.project-card {
+  background: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* =============================================================================
+   Desktop-only Adjustments for Project Cards
+   ============================================================================= */
+@media screen and (min-width: 769px) {
+  /* On desktop, the projects grid displays the cards as block elements */
+  .projects-grid {
+    display: block;
+  }
+  
+  /* Each project card spans the full horizontal width and uses flex layout */
+  .project-card {
+    width: 100%;
+    display: flex;               /* Splits the card into two areas */
+    align-items: center;         /* Vertically aligns child elements */
+    filter: blur(4px);           /* Applies a blur by default */
+    transition: filter 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  /* The image carousel occupies 20% of the card's width */
+  .project-card .carousel {
+    width: 20%;
+    position: relative;
+  }
+  
+  /* The content area (title and information) occupies the remaining 80% */
+  .project-card .card-content {
+    width: 80%;
+    padding-left: 20px;
+  }
+  
+  /* Remove the blur when hovering over the project card */
+  .project-card:hover {
+    filter: none;
+  }
+}
+
+/* =============================================================================
+   Mobile-only Adjustments for Project Cards
+   ============================================================================= */
+@media screen and (max-width: 768px) {
+  /* On mobile, stack project cards vertically */
+  .projects-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Mobile project cards take up 90% of the screen width and have no blur */
+  .project-card {
+    width: 90%;
+    filter: none;
+  }
+  
+  /* Both the carousel and content areas fill the project card on mobile */
+  .project-card .carousel,
+  .project-card .card-content {
+    width: 100%;
+  }
+  
+  /* Reduce the projects section heading size on mobile */
+  .projects-section h2 {
+    font-size: 2.5rem;
+  }
+}
+
+/* =============================================================================
+   Carousel Controls (used within ProjectCard)
+   ============================================================================= */
+/* Container for the carousel image and navigation controls */
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Styling for the navigation buttons (left and right arrows) */
+.carousel-button {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: #fff;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);   /* Center vertically */
+  padding: 0.5em 0.8em;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 3;  /* Ensure buttons appear above the image */
+}
+.carousel-button.left {
+  left: 5px;
+}
+.carousel-button.right {
+  right: 5px;
+}
+
+/* Ensure the project image fills its container */
+.project-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Styling for the project title within the card-content */
+.project-title {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+/* Styling for the project information text */
+.project-info {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #666;
+}
