@@ -4,88 +4,75 @@ import React from "react";
 import "../App.css";
 import ProjectCard from "./ProjectCard.jsx";
 
-// Import images for Project 1
-import project1Img1 from "../assets/projects/project1/image1.jpg";
-import project1Img2 from "../assets/projects/project1/image2.jpg";
+/*
+  Since Vercel does not always include files from src/assets in the deployment,
+  we move the images to the public folder, which is always included in the final build.
+  Now, images are referenced directly by their paths instead of importing them.
+*/
 
-// Import images for Project 2
-import project2Img1 from "../assets/projects/project2/image1.jpg";
-import project2Img2 from "../assets/projects/project2/image2.jpg";
-
-// Import images for Project 3
-import project3Img1 from "../assets/projects/project3/image1.jpg";
-import project3Img2 from "../assets/projects/project3/image2.jpg";
-
-// If you add images for more projects, import them similarly.
-
-// Create an array with all the project objects.
-// When no images are available for a project, the images array is empty.
+// Define an array of project objects with a title and image paths.
 const projectsData = [
   {
     id: 1,
     title: "Cyber Helper AI toolkit-Fullstack",
-    images: [project1Img1, project1Img2]
+    images: ["/projects/project1/image1.jpg", "/projects/project1/image2.jpg"],
   },
   {
     id: 2,
     title: "Flexi Forge Kit-Fullstack - 3D",
-    images: [project2Img1, project2Img2]
+    images: ["/projects/project2/image1.jpg", "/projects/project2/image2.jpg"],
   },
   {
     id: 3,
     title: "Web3 Blockchain- Fullstack - tipping Jar",
-    images: [project3Img1, project3Img2]
+    images: ["/projects/project3/image1.jpg", "/projects/project3/image2.jpg"],
   },
   {
     id: 4,
     title: "Pop Cart- electronic -e commerce website- woocommerce",
-    images: []
+    images: [],
   },
   {
     id: 5,
     title: "Tourism website- contract- wordpress",
-    images: []
+    images: [],
   },
   {
     id: 6,
     title: "E-commerce - website",
-    images: []
+    images: [],
   },
   {
     id: 7,
     title: "Python Telegram Bot",
-    images: []
+    images: [],
   },
   {
     id: 8,
     title: "PQYT Desktop- Cash Track -Full build",
-    images: []
+    images: [],
   },
   {
     id: 9,
     title: "PromethiAI - AI Agent Build",
-    images: []
+    images: [],
   },
   {
     id: 10,
     title: "Citadel Admin",
-    images: []
+    images: [],
   },
   {
     id: 11,
     title: "Worm farm",
-    images: []
-  }
+    images: [],
+  },
 ];
 
 /*
-  The Projects component renders a projects section with a custom heading.
-  The heading is now updated to:
-  
-      "Valentines Opulent Apartment: My Portfolio"
-
-  This heading reflects your designer/developer name "Valentine." The component maps over the
-  projectsData array, rendering a ProjectCard for each project.
+  The Projects component renders each project as a ProjectCard.
+  It ensures every project either displays images (if available)
+  or just the title and "Contact for more information."
 */
 const Projects = () => {
   return (
