@@ -5,12 +5,11 @@ import "../App.css";
 import ProjectCard from "./ProjectCard.jsx";
 
 /*
-  Since Vercel does not always include files from src/assets in the deployment,
-  we move the images to the public folder, which is always included in the final build.
-  Now, images are referenced directly by their paths instead of importing them.
+  Since Vercel deploys the public folder by default, we reference images via absolute paths.
+  For example: "/projects/project1/image1.jpg" refers to public/projects/project1/image1.jpg.
 */
 
-// Define an array of project objects with a title and image paths.
+// Array of project objects with title and image paths
 const projectsData = [
   {
     id: 1,
@@ -70,9 +69,8 @@ const projectsData = [
 ];
 
 /*
-  The Projects component renders each project as a ProjectCard.
-  It ensures every project either displays images (if available)
-  or just the title and "Contact for more information."
+  The Projects component renders a section with a custom heading
+  and a grid of project cards based on the projectsData array.
 */
 const Projects = () => {
   return (
